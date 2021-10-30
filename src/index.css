@@ -20,22 +20,19 @@ header button {
   color: #1535e7;
   margin: 10px 35px 0px 0px;
   width: 150px;
-  height: 50px;
-  border: 1px solid rgb(88, 233, 201);
+  height: 40px;
+  border: 2px solid rgb(88, 233, 201);
   border-radius: 15px;
   font-size: 14px;
   font-weight: bold;
   background-color: white;
   cursor: pointer;
-}
-
-header button:hover {
-  background-color: rgba(88, 233, 202, 0.507);
-  border-color: #1535e7;
+  transition: all 1s ease;
 }
 
 header img {
   width: 60px;
+  height: 60px;
   margin: 10px 0px 0px 35px;
 }
 
@@ -72,8 +69,16 @@ span {
   width: 40%;
   border-radius: 15px;
   height: 40px;
-  margin-left: 95px;
+  margin-left: 80px;
   border: 1px solid rgba(128, 128, 128, 0.596);
+  cursor: pointer;
+  outline: none;
+  padding-left: 20px;
+  transition: all 1s ease;
+}
+
+input::placeholder {
+  padding: 20px;
 }
 
 .search-button {
@@ -86,8 +91,12 @@ span {
   right: 65px;
 }
 
+.search-button:active {
+  outline: none;
+}
+
 .results {
-  margin-top: 40px;
+  margin: 40px 0px;
   text-align: center;
 }
 
@@ -112,31 +121,128 @@ h3 {
   height: 250px;
 }
 
+.containerList {
+  margin-top: 15px;
+  width: 40%;
+  border: 1px solid rgba(0, 0, 0, 0.541);
+  border-top: transparent;
+  border-radius: 10px;
+}
+
+.containerList ul {
+  border-top: 1px solid rgba(0, 0, 0, 0.541);
+  margin-top: 0px;
+  font-size: 14px;
+  list-style: none;
+  height: 15px;
+  cursor: pointer;
+  transition: all 1s ease;
+}
+
+.containerList ul li {
+  padding-top: 5px;
+  transition: all 1s ease;
+}
+
+ul:first-child {
+  border-radius: 10px;
+}
+
+/*Dark mood */
+
 .dark.giphos-container {
   background-color: #201e1e;
+  transition: all 1s ease;
 }
 
 .dark header button {
-  background-color: #1535e7;
+  background-color: #201e1e;
   border: 2px solid white;
   color: white;
-}
-
-.dark header button:hover {
-  color: #1535e7;
-  background-color: white;
-  border-color: rgb(88, 233, 201);
+  transition: all 1s ease;
 }
 
 .dark h1,
 .dark h3 {
   color: white;
-}
-
-.dark .input-search {
-  border: 1px solid rgb(88, 233, 201);
+  font-weight: 400;
 }
 
 .dark .container-gifs {
   background-color: #292323e8;
+}
+
+.dark .input-search {
+  background-color: #201e1e;
+  transition: all 1s ease;
+  color: white;
+}
+
+.dark .containerList {
+  border: 1px solid white;
+}
+
+.dark .containerList ul {
+  color: white;
+  border-top: 1px solid white;
+  transition: all 1s ease;
+}
+
+.dark .containerList li {
+  color: white;
+  border-bottom: white;
+  transition: all 1s ease;
+}
+
+@media (max-width: 400px) {
+  body {
+    max-width: 400px;
+  }
+
+  header button {
+    margin: 10px 0px 10px 40px;
+    width: 120px;
+    height: 30px;
+  }
+
+  header img {
+    width: 40px;
+    height: 40px;
+    margin: 10px 0px 0px 20px;
+  }
+
+  h1 {
+    width: 300px;
+  }
+
+  .input-search {
+    width: 90%;
+    border-radius: 15px;
+    height: 30px;
+  }
+
+  .results {
+    margin: 40px 0px;
+  }
+
+  .container-gifs {
+    margin: 0px;
+    width: 400px;
+  }
+
+  .container-gifs img {
+    margin: 10px;
+    width: 180px;
+    height: 180px;
+  }
+
+  .containerList {
+    margin-top: 15px auto;
+    width: 90%;
+  }
+
+  .search-button {
+    top: 10px;
+    right: 50px;
+  }
 }

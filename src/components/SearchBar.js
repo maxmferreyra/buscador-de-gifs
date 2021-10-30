@@ -1,7 +1,8 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 function SearchBar({ setSearchResults }) {
   const [inputValue, setInputValue] = useState("");
+  const [autoComplete, setAutoComplete] = useState([]);
 
   const handleInputValue = (e) => {
     setInputValue(e.target.value);
@@ -19,9 +20,14 @@ function SearchBar({ setSearchResults }) {
     setInputValue("");
   };
 
-  const handleInputBlur = () => {
-    console.log("estoy en este input");
-  };
+  useEffect(() => {
+    const resultAutocomplete = fetch(
+      `https://api.giphy.com/v1/gifs/search/tags?api_key=SmMxIDF7Y4PvbJVxP1M5eobyr0v24ddM&q=${inputValue}&limit=5`
+    );
+    resultAutocomplete
+      .then((response) => response.json())
+      .then((responseJson) => setAutoComplete(responseJson.data));
+  }, [inputValue]);
 
   return (
     <>
@@ -32,16 +38,24 @@ function SearchBar({ setSearchResults }) {
         <img src="./images/ilustra_header.svg" alt="imagen gifs" />
         <div className="search-user">
           <input
-            placeholder="     Buscar Gif"
+            placeholder="Buscar Gif"
             type="text"
             className="input-search"
             value={inputValue}
             onChange={handleInputValue}
-            onBlur={handleInputBlur}
           />
           <button className="search-button" onClick={handleSearchButton}>
             <img src="./images/icon-search.svg" alt="logo de busqueda" />
           </button>
+        </div>
+        <div className="containerList">
+          {autoComplete.map((inputValue, i) => {
+            return (
+              <ul>
+                <li key={i}>{inputValue.name}</li>
+              </ul>
+            );
+          })}
         </div>
       </div>
     </>

@@ -8,6 +8,7 @@ import Results from "./components/Results";
 function App() {
   const [isDark, setDark] = useState(false);
   const [searchResults, setSearchResults] = useState([]);
+  const [loading, setLoading] = useState(false);
 
   const handleDarkmode = () => {
     setDark(!isDark);
@@ -17,8 +18,13 @@ function App() {
     <>
       <div className={`giphos-container ${isDark ? "dark" : ""}`}>
         <Header handleDarkmode={handleDarkmode} isDark={isDark} />
-        <SearchBar setSearchResults={setSearchResults} />
-        <Results searchResults={searchResults} />
+        <SearchBar 
+        setSearchResults={setSearchResults} 
+        setLoading={setLoading}
+        />
+        <Results 
+        searchResults={searchResults}
+        loading={loading} />
       </div>    
     </>
   );
