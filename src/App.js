@@ -4,29 +4,30 @@ import Header from "./components/Header";
 import SearchBar from "./components/SearchBar";
 import Results from "./components/Results";
 
-
 function App() {
   const [isDark, setDark] = useState(false);
   const [searchResults, setSearchResults] = useState([]);
   const [loading, setLoading] = useState(false);
-
-  const handleDarkmode = () => {
-    setDark(!isDark);
-  };
+  const [error, setError] = useState(false);
 
   return (
-    <>
-      <div className={`giphos-container ${isDark ? "dark" : ""}`}>
-        <Header handleDarkmode={handleDarkmode} isDark={isDark} />
-        <SearchBar 
-        setSearchResults={setSearchResults} 
-        setLoading={setLoading}
-        />
-        <Results 
+    <div className={`giphos-container ${isDark ? "dark" : ""}`}>
+      <Header isDark={isDark} setDark={setDark} />
+      <SearchBar
+        setSearchResults={setSearchResults}
         searchResults={searchResults}
-        loading={loading} />
-      </div>    
-    </>
+        setLoading={setLoading}
+        setError={setError}
+        error={error}
+      />
+      <Results 
+      searchResults={searchResults} 
+      loading={loading} 
+      error={error}
+
+      />
+      
+    </div>
   );
 }
 

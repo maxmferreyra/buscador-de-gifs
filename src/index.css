@@ -106,7 +106,7 @@ h3 {
 
 .container-gifs {
   margin: 50px auto 0px auto;
-  width: 70%;
+  width: 80%;
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
@@ -117,8 +117,8 @@ h3 {
 
 .container-gifs img {
   margin: 10px;
-  width: 250px;
-  height: 250px;
+  width: 270px;
+  height: 210px;
 }
 
 .containerList {
@@ -129,23 +129,23 @@ h3 {
   border-radius: 10px;
 }
 
-.containerList ul {
+.containerList .autocomplete-item {
   border-top: 1px solid rgba(0, 0, 0, 0.541);
   margin-top: 0px;
-  font-size: 14px;
+  font-size: 16px;
   list-style: none;
-  height: 15px;
+  height: 100%;
   cursor: pointer;
   transition: all 1s ease;
 }
 
-.containerList ul li {
-  padding-top: 5px;
-  transition: all 1s ease;
-}
-
-ul:first-child {
-  border-radius: 10px;
+.error-container {
+  color: #1535e7;
+  font-size: 18px;
+  font-weight: bold;
+  height: 80px;
+  width: 50%;
+  margin: 0 auto;
 }
 
 /*Dark mood */
@@ -159,7 +159,6 @@ ul:first-child {
   background-color: #201e1e;
   border: 2px solid white;
   color: white;
-  transition: all 1s ease;
 }
 
 .dark h1,
@@ -182,16 +181,13 @@ ul:first-child {
   border: 1px solid white;
 }
 
-.dark .containerList ul {
+.dark .containerList p {
   color: white;
-  border-top: 1px solid white;
   transition: all 1s ease;
 }
 
-.dark .containerList li {
+.dark .error-container {
   color: white;
-  border-bottom: white;
-  transition: all 1s ease;
 }
 
 @media (max-width: 400px) {

@@ -1,21 +1,39 @@
 import { useState, useEffect } from "react";
 
-function SearchBar({ setSearchResults }) {
+function SearchBar(props) {
   const [inputValue, setInputValue] = useState("");
   const [autoComplete, setAutoComplete] = useState([]);
+
+  const sendRequest = (e) => {
+    e.preventDefault();
+  };
 
   const handleInputValue = (e) => {
     setInputValue(e.target.value);
   };
 
-  const handleSearchButton = () => {
+  const handleAutocompleteItem = (inputValue) => {
+    setInputValue(inputValue.name);
+    setAutoComplete([]);
+  };
+
+  const handleSearchButton = (e) => {
+    props.setLoading(true);
     const giphosResults = fetch(
       `https://api.giphy.com/v1/gifs/search?api_key=SmMxIDF7Y4PvbJVxP1M5eobyr0v24ddM&q=${inputValue}&limit=15&offset=0&rating=g&lang=en
       `
     );
     giphosResults
-      .then((response) => response.json())
-      .then((responseJson) => setSearchResults(responseJson.data));
+      .then((response) => {
+        props.setLoading(false);
+        return response.json();
+      })
+      .then((responseJson) => {
+        console.log(responseJson);
+        let isError = responseJson.data.length === 0;
+        props.setError(isError);
+        props.setSearchResults(responseJson.data);
+      });
 
     setInputValue("");
   };
@@ -36,7 +54,7 @@ function SearchBar({ setSearchResults }) {
           ¡Inspírate y busca los mejores <span>GIFS!</span>
         </h1>
         <img src="./images/ilustra_header.svg" alt="imagen gifs" />
-        <div className="search-user">
+        <form onSubmit={sendRequest} className="search-user">
           <input
             placeholder="Buscar Gif"
             type="text"
@@ -47,13 +65,17 @@ function SearchBar({ setSearchResults }) {
           <button className="search-button" onClick={handleSearchButton}>
             <img src="./images/icon-search.svg" alt="logo de busqueda" />
           </button>
-        </div>
+        </form>
         <div className="containerList">
           {autoComplete.map((inputValue, i) => {
             return (
-              <ul>
-                <li key={i}>{inputValue.name}</li>
-              </ul>
+              <p
+                onClick={() => handleAutocompleteItem(inputValue)}
+                className="autocomplete-item"
+                key={i}
+              >
+                {inputValue.name}
+              </p>
             );
           })}
         </div>
@@ -63,3 +85,4 @@ function SearchBar({ setSearchResults }) {
 }
 
 export default SearchBar;
+

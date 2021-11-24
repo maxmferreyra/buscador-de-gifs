@@ -1,15 +1,29 @@
+import Error from "./Error";
 
-const Results = ({ searchResults }) => {
+const Results = (props) => {
   return (
     <div className="results">
-      <h3>Resultado de la búsqueda</h3>
+      {props.searchResults.length === 0 && props.error === false ? (
+        <h3>¡Ey, realiza tu búsqueda!</h3>
+      ) : null}
+
+      {props.loading ? (
+        <div className="loading">
+          {" "}
+          <img src="../public/images/three-dots.svg" alt="loading" />
+        </div>
+      ) : null}
+
       <div className="container-gifs">
-        {searchResults.map((gif, i) => {
+        {props.searchResults.map((gif, i) => {
           return (
-            <img src={gif.images.downsized.url} key={i} alt="gif animado" />
+            <a href={gif.url} target="blanck">
+              <img src={gif.images.downsized.url} key={i} alt="gif animado" />
+            </a>
           );
         })}
       </div>
+      {props.error ? <Error /> : ""}
     </div>
   );
 };
