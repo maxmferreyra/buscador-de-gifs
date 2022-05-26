@@ -190,15 +190,16 @@ h3 {
   color: white;
 }
 
-@media (max-width: 400px) {
+@media screen and (max-width: 400px) {
   body {
     max-width: 400px;
   }
 
   header button {
-    margin: 10px 0px 10px 40px;
-    width: 120px;
+    margin: 10px 0px 10px 30px;
+    width: 100px;
     height: 30px;
+    font-size: 10px;
   }
 
   header img {
@@ -224,12 +225,13 @@ h3 {
   .container-gifs {
     margin: 0px;
     width: 400px;
+  
   }
 
   .container-gifs img {
     margin: 10px;
-    width: 180px;
-    height: 180px;
+    width: 130px;
+    height: 120px;
   }
 
   .containerList {
